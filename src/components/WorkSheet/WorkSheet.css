@@ -1,0 +1,82 @@
+.workSheet {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  overflow: scroll;
+  gap: 10px;
+}
+
+.workSheet__title {
+  max-width: 100%;
+  width: 100%;
+  text-align: center;
+  outline: none;
+  border: none;
+  font-weight: 600;
+  font-size: 16px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: opacity .2s linear;
+}
+
+.workSheet__title:focus {
+  outline: none;
+}
+
+.workSheet__title::placeholder {
+  color: lightgray;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+
+.workSheet__title:focus::placeholder {
+  opacity: 0;
+}
+
+.noteItem__deleteBtn {
+  background-color: inherit;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: black;
+  font-size: 10px;
+  opacity: .5;
+  transition: opacity .2s linear;
+}
+
+.workSheet__note {
+  display: flex;
+  box-sizing: border-box;
+  height: 100%;
+  max-height: 100%;
+  width: 70%;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  border: none;
+  resize: none;
+  font-weight: 14px;
+  line-height: 20px;
+}
+
+.workSheet__note:focus {
+  outline: none;
+}
+
+.workSheet__note::placeholder {
+  color: lightgray;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+
+.workSheet__note:focus::placeholder {
+  opacity: 0;
+}
