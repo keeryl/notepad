@@ -72,8 +72,8 @@ function App() {
     setNotes([ ...notes, { title: '', note: '', index: notes.length }]);
   }
 
-  const handleSelectNote = () => {
-
+  const handleSelectNote = (index: number) => {
+    setSelectedNote(notes[index]);
   }
 
   return (
@@ -82,6 +82,7 @@ function App() {
       <NotePad
         handleNoteChange={handleNoteChange}
         handleNoteTitleChange={handleNoteTitleChange}
+        handleSelectNote={handleSelectNote}
         noteValue={noteValue}
         addNote={handleNoteAdd}
         notes={notes}

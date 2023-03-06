@@ -9,11 +9,6 @@
 .logo {
   width: 100px;
   height: 30px;
-  cursor: pointer;
   opacity: 1;
   transition: opacity .2s linear;
-}
-
-.logo:hover {
-  opacity: .7;
 }

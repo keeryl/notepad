@@ -4,7 +4,6 @@
   justify-content: space-between;
   margin: 0;
   box-sizing: border-box;
-  /* border-top: 1px solid rgb(232, 229, 229); */
   border-bottom: 1px solid rgb(232, 229, 229);
   width: 100%;
   overflow: hidden;
@@ -14,6 +13,10 @@
   transition: opacity .2s linear;
   gap: 3px;
   height: 50px;
+}
+
+.noteItem_selected {
+  background-color: rgb(250, 250, 250)
 }
 
 .noteItem:hover {

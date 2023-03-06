@@ -6,6 +6,7 @@ import { INote } from '../App/App';
 
 interface NoteListProps {
   addNote: () => void;
+  handleSelectNote: (index: number) => void;
   notes: INote[];
   selectedNote: INote;
 }
@@ -34,6 +35,8 @@ function NoteList(props: NoteListProps) {
                 title={note.title}
                 note={note.note}
                 index={idx}
+                handleSelectNote={props.handleSelectNote}
+                selectedNote={props.selectedNote}
               />
             )
           })
