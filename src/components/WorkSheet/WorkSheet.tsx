@@ -1,19 +1,13 @@
-import { useEffect } from 'react';
 import './WorkSheet.css';
 import { INote } from '../App/App';
 
 interface WorkSheetProps {
   handleNoteChange: (value: string, noteId: number) => void;
   handleNoteTitleChange: (value: string, noteId: number) => void;
-  noteValue: string;
   selectedNote: INote;
 }
 
 function WorkSheet(props: WorkSheetProps) {
-
-  useEffect(() => {
-    console.log('props.selectedNote', Object.keys(props.selectedNote).length);
-  }, [props.selectedNote]);
 
   return (
     <article className="workSheet">
@@ -37,7 +31,7 @@ function WorkSheet(props: WorkSheetProps) {
         />
        </>
       :
-       <p>Выберите заметку</p>
+       <p className="workSheet__plugText">Выберите или создайте заметку</p>
       }
     </article>
   );

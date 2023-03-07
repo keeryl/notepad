@@ -80,3 +80,9 @@
 .workSheet__note:focus::placeholder {
   opacity: 0;
 }
+
+.workSheet__plugText {
+  color: gray;
+  font-weight: 400;
+  font-size: 14px;
+}

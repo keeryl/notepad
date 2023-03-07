@@ -7,7 +7,7 @@ interface NotePadProps {
   handleNoteChange: (value: string, noteId: number) => void;
   handleNoteTitleChange: (value: string, noteId: number) => void;
   handleSelectNote: (index: number) => void;
-  noteValue: string;
+  handleDeleteNote: (index: number) => void;
   addNote: () => void;
   notes: INote[];
   selectedNote: INote;
@@ -21,11 +21,11 @@ function NotePad(props: NotePadProps) {
         notes={props.notes}
         selectedNote={props.selectedNote}
         handleSelectNote={props.handleSelectNote}
+        handleDeleteNote={props.handleDeleteNote}
       />
       <WorkSheet
         handleNoteChange={props.handleNoteChange}
         handleNoteTitleChange={props.handleNoteTitleChange}
-        noteValue={props.noteValue}
         selectedNote={props.selectedNote}
       />
     </main>

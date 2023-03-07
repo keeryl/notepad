@@ -5,9 +5,12 @@
   max-width: 250px;
   border-right: 1px solid rgb(232, 229, 229);
   padding: 0 10px 0 0;
-  overflow: scroll;
   box-sizing: border-box;
   gap: 10px;
+}
+
+.noteList ul::-webkit-scrollbar {
+  display: none;
 }
 
 .noteList ul {
@@ -16,6 +19,8 @@
   list-style: none;
   box-sizing: border-box;
   border-top: 1px solid rgb(232, 229, 229);
+  overflow: scroll;
+  scrollbar-width: none;
 }
 
 .noteList__addBtn {

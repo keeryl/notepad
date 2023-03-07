@@ -1,21 +1,16 @@
-import { useEffect } from 'react';
 import './NoteList.css';
 import NoteItem from '../NoteItem/NoteItem';
 import { INote } from '../App/App';
-
 
 interface NoteListProps {
   addNote: () => void;
   handleSelectNote: (index: number) => void;
   notes: INote[];
   selectedNote: INote;
+  handleDeleteNote: (index: number) => void;
 }
 
 function NoteList(props: NoteListProps) {
-
-  useEffect(() => {
-
-  }, [props.notes]);
 
   return (
     <aside className="noteList">
@@ -34,12 +29,13 @@ function NoteList(props: NoteListProps) {
                 key={idx}
                 title={note.title}
                 note={note.note}
-                index={idx}
+                index={note.index}
                 handleSelectNote={props.handleSelectNote}
                 selectedNote={props.selectedNote}
+                handleDeleteNote={props.handleDeleteNote}
               />
             )
-          })
+          }).reverse()
         }
       </ul>
     </aside>

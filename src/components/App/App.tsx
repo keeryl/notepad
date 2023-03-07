@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import Header from '../Header/Header';
 import NotePad from '../NotePad/NotePad';
@@ -12,35 +12,32 @@ export interface INote {
 
 function App() {
 
-  const [ noteValue, setNoteValue ] = useState(``);
   const [ notes, setNotes ] = useState<INote[]>([{}] as INote[]);
   const [ selectedNote, setSelectedNote ] = useState<INote>({} as INote);
   useEffect(() => {
-    // if (!localStorage.getItem('noteApp')) {
-    //   setNotes([{ title: '', note: '' }]);
-    // } else {
-    //   console.log(localStorage.getItem('noteApp'))
-    //   // setNotes(JSON.parse(localStorage.getItem('noteApp')));
-    // }
-    // return () => {
-    //   localStorage.setItem('noteApp', JSON.parse(notes));
-    // }
-    // setNotes([{ title: 'Title', note: 'Text' }]);
-    // setNotes([{ title: 'Title', note: 'Text', index: 0 }]);
-    setNotes((prevState) => {
-      return prevState.map((item, idx) => {
-        item.index = idx;
-        item.title = '';
-        item.note = '';
-        return item;
-      })
-    });
-    setSelectedNote(notes[0]);
+    if (localStorage.getItem('noteApp') !== null) {
+      setNotes([ ...JSON.parse(localStorage.getItem('noteApp')!) ]);
+      // setSelectedNote(notes[0]);
+    } else {
+      setNotes((prevState) => {
+        return prevState.map((item, idx) => {
+          item.title = '';
+          item.note = '';
+          item.index = idx;
+          return item;
+        });
+      });
+      // setSelectedNote(notes[0]);
+    }
+    return () => {
+      localStorage.setItem('noteApp', JSON.stringify(notes));
+    }
   }, []);
 
   useEffect(() => {
-    console.log('selectedNote', selectedNote)
-  }, [selectedNote])
+    localStorage.setItem('noteApp', JSON.stringify(notes));
+    notes.length === 0 && setSelectedNote({} as INote);
+  }, [notes]);
 
   const handleNoteChange = (value: string, noteId: number) => {
     setNotes((prevState) => {
@@ -64,16 +61,34 @@ function App() {
         } else {
           return item;
         }
-      })
+      });
     });
   }
 
   const handleNoteAdd = () => {
-    setNotes([ ...notes, { title: '', note: '', index: notes.length }]);
+    const index = notes.length;
+    setNotes([ ...notes, { title: '', note: '', index: index }]);
+    setSelectedNote({} as INote);
+  }
+
+  const handleDeleteNote = (noteId: number) => {
+    if (selectedNote.index === noteId) {
+      setSelectedNote({} as INote);
+    }
+    notes.splice(noteId, 1);
+    const newArr = notes.map((item, idx) => {
+      item.index = idx;
+      return item;
+    })
+    setNotes([...newArr]);
   }
 
   const handleSelectNote = (index: number) => {
-    setSelectedNote(notes[index]);
+    if (selectedNote.index === index) {
+      setSelectedNote({} as INote);
+    } else {
+      setSelectedNote(notes[index]);
+    }
   }
 
   return (
@@ -83,7 +98,7 @@ function App() {
         handleNoteChange={handleNoteChange}
         handleNoteTitleChange={handleNoteTitleChange}
         handleSelectNote={handleSelectNote}
-        noteValue={noteValue}
+        handleDeleteNote={handleDeleteNote}
         addNote={handleNoteAdd}
         notes={notes}
         selectedNote={selectedNote}
